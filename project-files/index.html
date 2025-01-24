@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">字</div>
+      <nav>
+        <ul>
+          <li><a href="#" class="active">家</a></li>
+          <li><a href="#">📋</a></li>
+          <li><a href="#">➕</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main>
+      <header class="header">
+        <input type="text" class="search-bar" placeholder="search for entries">
+        <div class="profile-icon">👤</div>
+      </header>
+      <section class="content">
+        <h2>Katakana</h2>
+        <div class="buttons">
+          <button class="btn">Learn</button>
+          <button class="btn">Add</button>
+          <button class="btn">Delete</button>
+        </div>
+        <div class="entries">
+          <h3>Entries</h3>
+          <textarea class="entries-list" placeholder="Your entries will appear here..." rows="10"></textarea>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>

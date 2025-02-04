@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container">
-    <aside class="sidebar">
+    <div class="sidebar">
       <div class="logo">字</div>
       <nav>
         <ul>
@@ -17,26 +17,30 @@
           <li><a href="#">➕</a></li>
         </ul>
       </nav>
-    </aside>
+    </div>
     <main>
       <header class="header">
-        <input type="text" class="search-bar" placeholder="search for entries">
-        <div class="profile-icon">👤</div>
+        <div class="search">
+          <input type="text" class="search-bar" placeholder="search in this deck">
+        </div>
+        <div class="profile-icon" style="position: absolute; right: 0;border-radius: 25px;padding: 10px;background-color: #f4f4f4; cursor: pointer;">👤</div>
       </header>
       <section class="content">
-        <h2>Kanji</h2>
+        <h1 style="font-size: xx-large; color: black;">Kanji</h2>
         <div class="buttons">
           <button class="btn">Learn</button>
           <button class="btn">Add</button>
           <button class="btn">Delete</button>
         </div>
-        <div class="entries">
-          <h3>Entries</h3>
-          <div class="entries-box" data-meaning="にち / ひ (sun, day)">日</div>
-          <div class="entries-box" data-meaning="げつ / つき (moon, month)">月</div>
-          <div class="entries-box" data-meaning="すい / みず (water)">水</div>
-          <div class="entries-box" data-meaning="か / ひ (fire)">火</div>
-          <div class="entries-box" data-meaning="もく / き (tree, wood)">木</div>
+        <h3 style="margin-top: 50px; margin-bottom: 50px; font-size: x-large; color: black;">Entries</h3>
+        <div class="group">
+          <div class="entries">
+            <div class="entries-box" data-meaning="にち / ひ (sun, day)">日</div>
+            <div class="entries-box" data-meaning="げつ / つき (moon, month)">月</div>
+            <div class="entries-box" data-meaning="すい / みず (water)">水</div>
+            <div class="entries-box" data-meaning="か / ひ (fire)">火</div>
+            <div class="entries-box" data-meaning="もく / き (tree, wood)">木</div>
+          </div>
         </div>
       </section>
     </main>

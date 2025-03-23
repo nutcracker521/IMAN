@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "CircularSpotifyTxT-Black";
   position: relative;
 }
 
@@ -22,20 +22,28 @@ body::after {
   z-index: -1;
 }
 
+
+
 .container {
-    height: auto;
-    display: flex;
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
 }
+
 
 .sidebar {
   width: 60px;
-  height: auto;
   background-color: #f4f4f4;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px;
   border-right: 1px solid #ccc;
+  height: 100vh; /* Ensure full height */
+  position: fixed; /* Keeps it stuck to the side */
+  left: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .logo {
@@ -118,7 +126,7 @@ body::after {
 }
 
 .btn {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "CircularSpotifyTxT-Black";
   font-size: x-large;
   margin-top: 30px;
   padding: 30px 88px;
@@ -185,3 +193,86 @@ body::after {
   padding-bottom: 40px;
   border-radius: 25px;
 }
+
+/*decks css*/
+
+.deck-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+  width: 90%; /* Increased width for larger screens */
+  max-width: 1200px; /* Allow growth */
+}
+
+.deck-button {
+  width: 90%; /* Adjust to screen size */
+  min-width: 300px; /* Ensures it doesn't shrink too much */
+  max-width: 1100px; /* Prevents overly large buttons */
+  height: 12vh; /* Dynamic height based on viewport */
+  background-color: #3a3a3a;
+  color: white;
+  font-size: 1.5rem; /* Scales better with screen */
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.deck-button:hover {
+  background-color: #4a4a4a;
+}
+
+
+/*modal*/
+
+/* Modal Styling */
+/* Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  margin: 10% auto;
+  width: 50%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: red;
+}
+
+
+.add-deck-radio-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust spacing between the button and label */
+}
+
+.add-deck-radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+

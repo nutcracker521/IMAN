@@ -9,6 +9,14 @@ body {
   position: relative;
 }
 
+hr {
+  height: 1px;
+  color: gray;
+  background: black;
+  font-size: 0;
+  border: 0;
+}
+
 
 body::after {
   content: "";
@@ -161,6 +169,7 @@ body::after {
 }
 
 .entries-box {
+  font-family: "CircularSpotifyTxT-Black";
   height: 200px;
   background-color: white;
   border: 2px solid #ccc;
@@ -200,19 +209,36 @@ body::after {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  margin-top: 30px;
-  width: 90%; /* Increased width for larger screens */
-  max-width: 1200px; /* Allow growth */
+  gap: 20px;
+  margin-top: 20px;
+  margin-left: 10%;
+  width: 80%;
 }
 
+.deck {
+  background-color: white;
+  color: black;
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+
+}
+
+
 .deck-button {
+  font-family: "CircularSpotifyTxT-Black";
   width: 90%; /* Adjust to screen size */
   min-width: 300px; /* Ensures it doesn't shrink too much */
   max-width: 1100px; /* Prevents overly large buttons */
   height: 12vh; /* Dynamic height based on viewport */
-  background-color: #3a3a3a;
-  color: white;
+  background-color: white;
+  color: gray;
   font-size: 1.5rem; /* Scales better with screen */
   font-weight: bold;
   border: none;
@@ -225,7 +251,13 @@ body::after {
 }
 
 .deck-button:hover {
-  background-color: #4a4a4a;
+  background-color: #d3d3d3;
+  color: black;
+}
+
+.deck .icon {
+  margin-right: 10px;
+  font-size: 1.5rem;
 }
 
 
@@ -339,4 +371,53 @@ body::after {
 #addDeckBtn:active {
   transform: scale(0.9, 1.1); /* Tall squish when clicked */
   background-color: #bfbfbf; /* Even darker grey when clicked */
+}
+
+/*decks*/
+
+.deck-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  margin: 5px 0;
+  position: relative;
+}
+
+.three-dots {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.menu-container {
+  position: relative;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  z-index: 10;
+}
+
+.menu button {
+  display: block;
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu button:hover {
+  background: #f0f0f0;
 }

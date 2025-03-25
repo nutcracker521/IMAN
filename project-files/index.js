@@ -69,24 +69,73 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function fetchDecks() {
   fetch("get_decks.php")
-      .then(response => response.json())
-      .then(data => {
-          const deckContainer = document.querySelector(".deck-container");
-          deckContainer.innerHTML = ""; // Clear existing content
+    .then(response => response.json())
+    .then(data => {
+      const deckContainer = document.querySelector(".deck-container");
+      deckContainer.innerHTML = ""; // Clear existing content
 
-          data.forEach(deck => {
-              const deckButton = document.createElement("button");
-              deckButton.classList.add("deck-button");
+      data.forEach(deck => {
+        const deckButton = document.createElement("button");
+        deckButton.classList.add("deck-button");
 
-              deckButton.innerHTML = `
-                  <span>📍 ${deck.deck_name}</span>
-                  <small>${deck.category} | ${deck.level}</small>
-              `;
+        deckButton.innerHTML = `
+          <span>📍 ${deck.deck_name}</span>
+          <small>${deck.category} | ${deck.level}</small>
+        `;
 
-              deckContainer.appendChild(deckButton);
-          });
-      })
-      .catch(error => console.error("Error fetching decks:", error));
+        // Set a unique ID or name attribute
+        deckButton.setAttribute("data-id", deck.id); 
+
+        // Click event to redirect to index.html with deck ID
+        deckButton.addEventListener("click", () => {
+          window.location.href = `index.html?deck_id=${deck.id}`;
+        });
+
+        deckContainer.appendChild(deckButton);
+      });
+    })
+    .catch(error => console.error("Error fetching decks:", error));
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const deckId = urlParams.get("deck_id");
+
+  if (deckId) {
+      console.log(`Loading flashcards for deck ID: ${deckId}`);
+      fetchDeckDetails(deckId);
+      loadFlashcards(deckId);
+  } else {
+      console.warn("No deck selected.");
+  }
+});
+
+// Fetch the deck name to display on the page
+function fetchDeckDetails(deckId) {
+  fetch(`get_deck_info.php?deck_id=${deckId}`)
+      .then(response => response.json())
+      .then(deck => {
+          document.querySelector("h1").textContent = deck.deck_name || "Kanji";
+      })
+      .catch(error => console.error("Error fetching deck details:", error));
+}
+
+// Fetch and display flashcards
+function loadFlashcards(deckId) {
+  fetch(`get_flashcards.php?deck_id=${deckId}`)
+      .then(response => response.json())
+      .then(data => {
+          const entriesContainer = document.querySelector(".entries");
+          entriesContainer.innerHTML = ""; // Clear previous content
+
+          data.forEach(flashcard => {
+              const card = document.createElement("div");
+              card.classList.add("entries-box");
+              card.setAttribute("data-meaning", `${flashcard.reading} (${flashcard.meaning})`);
+              card.textContent = flashcard.kanji;
+              entriesContainer.appendChild(card);
+          });
+      })
+      .catch(error => console.error("Error fetching flashcards:", error));
+}
 

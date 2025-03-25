@@ -52,7 +52,7 @@
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2 class="add-deck-title">Create a New Deck</h2>
-      <form action="submit_deck.php" method="POST" enctype="multipart/form-data" class="add-deck-form" onsubmit="confirmSubmission(event)">
+      <form class="add-deck-form" method="POST" enctype="multipart/form-data" action="submit_deck.php">
         <div class="form-group">
           <label for="deck-name">Deck Title:</label>
           <input type="text" id="deck-name" name="deck_name" placeholder="Enter deck title" required>

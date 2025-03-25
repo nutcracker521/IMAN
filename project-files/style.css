@@ -232,7 +232,6 @@ body::after {
 /*modal*/
 
 /* Modal Styling */
-/* Modal Styling */
 .modal {
   display: none;
   position: fixed;
@@ -242,19 +241,30 @@ body::after {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-content {
   background-color: white;
   padding: 20px;
-  margin: 10% auto;
-  width: 50%;
+  width: 40%;
+  max-width: 500px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: absolute; /* Change from relative to absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+
+/* Close Button */
 .close {
-  float: right;
+  position: absolute;
+  top: 10px;
+  right: 15px;
   font-size: 24px;
   cursor: pointer;
 }
@@ -263,16 +273,70 @@ body::after {
   color: red;
 }
 
-
-.add-deck-radio-group {
+/* Form Layout */
+.modal-content form {
   display: flex;
-  align-items: center;
-  gap: 10px; /* Adjust spacing between the button and label */
+  flex-direction: column;
+  gap: 10px;
 }
 
-.add-deck-radio-group label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+.modal-content label {
+  font-weight: bold;
 }
 
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-content button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #0056b3;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column; /* Stack them vertically */
+  gap: 5px; /* Space between items */
+  align-items: start; /* Align to the left */
+}
+
+.radio-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px; /* Space between radio button and text */
+}
+
+
+/*Squish*/
+
+#addDeckBtn {
+  background-color: #f5f5f5; /* Light grey */
+  border: none;
+  padding: 10px 20px;
+  font-size: 11px;
+  border-radius: 8px;
+  transition: transform 0.2s ease-out, background-color 0.2s ease-in-out;
+}
+
+#addDeckBtn:hover {
+  transform: scale(1.1, 0.9); /* Squish effect */
+  background-color: #d3d3d3; /* Darker grey on hover */
+}
+
+#addDeckBtn:active {
+  transform: scale(0.9, 1.1); /* Tall squish when clicked */
+  background-color: #bfbfbf; /* Even darker grey when clicked */
+}

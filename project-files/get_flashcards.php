@@ -1,15 +1,17 @@
 <?php
-require "db_connection.php"; // Ensure you have a working DB connection
+session_start();
+require 'config.php';
 
-$deck_id = $_GET['deck_id'] ?? null;
-
-if (!$deck_id) {
-    echo json_encode(["error" => "No deck ID provided"]);
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.html");
     exit;
 }
 
-$stmt = $conn->prepare("SELECT kanji, reading, meaning FROM flashcards WHERE deck_id = ?");
-$stmt->bind_param("i", $deck_id);
+$user_id = $_SESSION['user_id'];
+$deck_id = $_GET['deck_id'];
+
+$stmt = $conn->prepare("SELECT id, question, answer FROM flashcards WHERE deck_id = ? AND user_id = ?");
+$stmt->bind_param("ii", $deck_id, $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -19,4 +21,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 echo json_encode($flashcards);
+
+$stmt->close();
+$conn->close();
 ?>

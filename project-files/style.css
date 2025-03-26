@@ -146,6 +146,19 @@ body::after {
   opacity: 80%;
 }
 
+.delete-btn {
+  font-family: "CircularSpotifyTxT-Black";
+  font-size: x-large;
+  margin-top: 30px;
+  padding: 30px 88px;
+  background-color: #007BFF;
+  border-color: #007BFF;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 80%;
+}
+
 .btn:hover {
   background-color: white;
   color: #007BFF;
@@ -420,4 +433,27 @@ body::after {
 
 .menu button:hover {
   background: #f0f0f0;
+}
+
+/*Styling  for no decks yet*/
+
+.no-entries {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  margin-top: 20px;
+}
+
+/*add entry*/
+.flashcard {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #000;
+  display: inline-block;
+  cursor: pointer;
+  background-color: #f8f8f8;
+}
+
+.flashcard:hover {
+  background-color: #ddd;
 }

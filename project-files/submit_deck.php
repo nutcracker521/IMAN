@@ -3,18 +3,16 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 header("Content-Type: text/plain");
 
-// Database connection
-$host = "localhost"; 
-$user = "root"; 
-$password = ""; 
-$database = "deck_manager";
+session_start();
+require 'config.php'; // Ensure this contains the database connection
 
-$conn = new mysqli($host, $user, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    http_response_code(401);
+    die("Error: Unauthorized - Please log in first.");
 }
+
+$user_id = $_SESSION['user_id']; // Get the logged-in user's ID
 
 // Ensure it's a POST request
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -27,11 +25,11 @@ $deck_name = trim($_POST['deck_name'] ?? "");
 $description = trim($_POST['description'] ?? "");
 $category = trim($_POST['category'] ?? "");
 $level = trim($_POST['level'] ?? "");
-$visibility = trim($_POST['visibility'] ?? "");
+$visibility = trim($_POST['visibility'] ?? "private"); // Default to private
 $tags = trim($_POST['tags'] ?? "");
 
 // Validate required fields
-if (empty($deck_name) || empty($description) || empty($category) || empty($level) || empty($visibility)) {
+if (empty($deck_name) || empty($description) || empty($category) || empty($level)) {
     die("Error: Required fields missing");
 }
 
@@ -52,16 +50,16 @@ if (isset($_FILES['deck_icon']) && $_FILES['deck_icon']['error'] === UPLOAD_ERR_
     }
 }
 
-// Insert into database
-$sql = "INSERT INTO decks (deck_name, description, category, level, visibility, tags, deck_icon) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
+// Insert into database with user_id
+$sql = "INSERT INTO decks (deck_name, description, category, level, visibility, tags, deck_icon, user_id) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
     die("Error: Failed to prepare SQL statement");
 }
 
-$stmt->bind_param("sssssss", $deck_name, $description, $category, $level, $visibility, $tags, $deck_icon);
+$stmt->bind_param("sssssssi", $deck_name, $description, $category, $level, $visibility, $tags, $deck_icon, $user_id);
 
 if ($stmt->execute()) {
     echo "Deck created successfully!";

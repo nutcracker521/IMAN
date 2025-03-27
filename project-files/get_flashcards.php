@@ -10,7 +10,9 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $deck_id = $_GET['deck_id'];
 
-$stmt = $conn->prepare("SELECT id, question, answer FROM flashcards WHERE deck_id = ? AND user_id = ?");
+//echo json_encode(["user_id" => $_SESSION['user_id']]);
+
+$stmt = $conn->prepare("SELECT kanji, reading, meaning FROM flashcards WHERE deck_id = ? AND user_id = ?");
 $stmt->bind_param("ii", $deck_id, $user_id);
 $stmt->execute();
 $result = $stmt->get_result();

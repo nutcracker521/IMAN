@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $password_hash)) {
             $_SESSION['user_id'] = $id;
             $_SESSION['username'] = $username;
-            header("Location: index.php"); // Redirect after login
+            header("Location: decks.php"); // Redirect after login
             exit;
         } else {
             echo "Invalid password!";

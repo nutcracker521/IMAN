@@ -130,10 +130,12 @@ function fetchDeckDetails(deckId) {
 
 // Fetch and display flashcards
 function loadFlashcards(deckId) {
+  console.log("Deck ID:", deckId);
   fetch(`get_flashcards.php?deck_id=${deckId}`)
     .then(response => response.json())
     .then(data => {
       const entriesContainer = document.querySelector(".entries");
+      console.log(data);
       if (!entriesContainer) {
         console.error("Error: entries container not found.");
         return;
